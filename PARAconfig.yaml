@@ -1,0 +1,79 @@
+%YAML:1.0
+
+File.version: "1.0"
+
+Camera.type: "PinHole"
+
+Camera1.fx: 748.73
+Camera1.fy: 746.18
+Camera1.cx: 639.73
+Camera1.cy: 372.93
+
+Camera1.k1: 0.025959
+Camera1.k2: -0.087072
+Camera1.p1: 0.000049
+Camera1.p2: 0.000082
+
+Camera1.k3: 0.046401
+
+# Camera frames per second
+Camera.fps: 30
+Camera.width: 640
+Camera.height: 480
+
+# Color order of the images (0: BGR, 1: RGB)
+Camera.RGB: 1
+
+# Number of features per image
+ORBextractor.nFeatures: 3000
+
+# Scale factor between levels in the scale pyramid
+ORBextractor.scaleFactor: 1.2
+
+# Number of levels in the scale pyramid
+ORBextractor.nLevels: 12
+
+# Fast threshold
+ORBextractor.iniThFAST: 8
+ORBextractor.minThFAST: 2
+
+# Viewer parameters
+Viewer.KeyFrameSize: 0.1
+Viewer.KeyFrameLineWidth: 1.0
+Viewer.GraphLineWidth: 1.0
+Viewer.PointSize: 2.0
+Viewer.CameraSize: 0.15
+Viewer.CameraLineWidth: 2.0
+Viewer.ViewpointX: 0.0
+Viewer.ViewpointY: -10.0
+Viewer.ViewpointZ: -0.1
+Viewer.ViewpointF: 2000.0
+
+# Load existing map on startup
+#System.LoadAtlasFromFile: "offline_map"
+
+# Save map when shutting down
+#System.SaveAtlasToFile: "offline_map"
+
+# IMU to camera transformation matrix (camera-from-IMU, T_cam_imu)
+IMU.T_b_c1: !!opencv-matrix
+  rows: 4
+  cols: 4
+  dt: f
+  data: [ 0.0, 0.0, 1.0, 0.0,
+          -1.0, 0.0, 0.0, 0.0,
+          0.0, 1.0, 0.0, 0.0,
+          0.0, 0.0, 0.0, 1.0 ]
+
+# IMU noise (Use those from VINS-mono)
+IMU.NoiseGyro: 1e-3 # 2.44e-4 #1e-3 # rad/s^0.5
+IMU.NoiseAcc: 1e-2 # 1.47e-3 #1e-2 # m/s^1.5
+IMU.GyroWalk: 1e-6 # rad/s^1.5
+IMU.AccWalk: 1e-4 # m/s^2.5
+IMU.Frequency: 200.0
+
+# Enable fast IMU initialization
+IMU.fastInit: 1
+
+# Insert keyframes when tracking is lost
+IMU.InsertKFsWhenLost: 0
