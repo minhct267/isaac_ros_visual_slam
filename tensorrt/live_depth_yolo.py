@@ -39,8 +39,8 @@ from rtsp_capture import LatestFrameGrabber, open_rtsp_low_latency
 from trt_session import Da3TensorRTSession
 
 # Default pinhole calibration (override via --fx / --fy). Used for metric depth: depth_raw * (focal/300).
-CALIB_FX = 748.73
-CALIB_FY = 746.18
+CALIB_FX = 900.7719
+CALIB_FY = 898.28297
 # Reserved for future undistortion / projection (not used in v1):
 # CALIB_CX = 639.73
 # CALIB_CY = 372.93

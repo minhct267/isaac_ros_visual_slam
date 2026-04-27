@@ -21,7 +21,7 @@ import cv2
 
 from rtsp_capture import LatestFrameGrabber, open_rtsp_low_latency
 
-DEFAULT_RTSP_URL = "rtsp://dji:dji@10.0.0.122:8554/streaming/live/1"
+DEFAULT_RTSP_URL = "rtsp://dji:dji@192.168.1.3:8554/streaming/live/1"
 
 
 def parse_args() -> argparse.Namespace:

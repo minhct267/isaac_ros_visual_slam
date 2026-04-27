@@ -55,6 +55,8 @@ def _launch_drone_publisher(context, *args, **kwargs):
     target_fps = LaunchConfiguration('target_fps').perform(context)
     da3_src = LaunchConfiguration('da3_src').perform(context)
     tensorrt_dir = LaunchConfiguration('tensorrt_dir').perform(context)
+    yolo_weights = LaunchConfiguration('yolo_weights').perform(context)
+    target_object_topic = LaunchConfiguration('target_object_topic').perform(context)
 
     script = Path(tensorrt_dir) / 'drone_node.py'
     env = os.environ.copy()
@@ -74,6 +76,10 @@ def _launch_drone_publisher(context, *args, **kwargs):
             f'rtsp_url:={rtsp_url}',
             '-p',
             f'target_fps:={target_fps}',
+            '-p',
+            f'yolo_weights:={yolo_weights}',
+            '-p',
+            f'target_object_topic:={target_object_topic}',
         ],
         env=env,
         output='screen',
@@ -107,6 +113,19 @@ def generate_launch_description():
             'tensorrt_dir',
             default_value=_DEFAULT_TENSORRT_DIR,
             description='Directory containing drone_node.py and TRT helpers',
+        ),
+        DeclareLaunchArgument(
+            'yolo_weights',
+            default_value='yolo26l.pt',
+            description=(
+                'Ultralytics YOLO weights (.pt); relative paths resolve under tensorrt_dir '
+                '(same folder as drone_node.py)'
+            ),
+        ),
+        DeclareLaunchArgument(
+            'target_object_topic',
+            default_value='/goal_object_name',
+            description='std_msgs/String topic: class name to detect (COCO-style, case-insensitive)',
         ),
     ]
 
